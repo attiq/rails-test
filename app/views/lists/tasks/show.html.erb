@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @task.name %>
+</p>
+
+<p>
+  <b>Due Date:</b>
+  <%= date_to_str(@task.due_at) %>
+</p>
+
+<p>
+  <b>Complete?</b>
+  <%= @task.complete %>
+</p>
+
+<%= link_to 'Edit', edit_list_task_path(@list, @task), class: "btn btn-primary" %>
+<%= link_to 'Back', list_tasks_path(@list), class: "btn btn-danger" %>

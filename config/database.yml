@@ -1,0 +1,34 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 12 } %>
+  host: localhost
+  timeout: 5000
+
+test:
+  <<: *default
+  database: rails_test_test
+  username: <%= ENV.fetch('PG_USER') { 'postgres' } %>
+  password: postgres
+
+development:
+  <<: *default
+  database: rails_test_dev
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("PG_POOL") { 4 } %>
+
+staging:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASS'] %>
+  database: myapp_staging
+
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASS'] %>
+  database: rails_test_production
+  pool: <%= ENV.fetch("PG_POOL") { 16 } %>

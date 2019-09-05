@@ -1,0 +1,40 @@
+<%= form_for([@list, @task]) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :due_at, "Due Date" %>
+      <%= f.text_field :due_at, class: "form-control datepicker" %>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+      <%= f.check_box :complete, class: "custom-control-input", id: "defaultUnchecked" %>
+      <label class="custom-control-label" for="defaultUnchecked">Complete?</label>
+    </div>
+
+    <br>
+    
+    <div class="actions float-right">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
